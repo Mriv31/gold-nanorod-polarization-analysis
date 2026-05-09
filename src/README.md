@@ -2,12 +2,34 @@
 
 Martin Rieu¹,², Daping Xu¹,², Gunasekaran Subramaniam¹,², Ashley L. Nord³, Alexis Courbet³,⁴,⁵,⁶, Hafez El Sayyed¹,², Richard M. Berry*¹,²
 
+1.	Department of Physics, University of Oxford, Oxford, UK
+2.	Kavli Institute for Institute for Nanoscience Discovery, Oxford, UK
+3.	Centre de Biologie Structurale, Université de Montpellier, CNRS, INSERM, Montpellier, France
+4.	Institute for Protein Design, University of Washington, Seattle, WA, 98105, USA
+5.	Department of Biochemistry, University of Washington, Seattle, WA, 98195, USA
+6.	Howard Hughes Medical Institute, University of Washington, Seattle, WA, 98105, USA
+
+
 Author of the code: Martin Rieu (martin.rieu@physics.ox.ac.uk)
 Corresponding author: Prof. Richard M. Berry (richard.berry@physics.ox.ac.uk)
 
 This repository contains code for analyzing raw APD measurements from single gold nanorods. Each APD records one polarization-scattered intensity from the rod at 0°, 45°, 90°, or 135°. The code transforms these signals into time trajectories of gold nanorod orientation and performs the subsequent analysis used in the paper.
 
+Raw experimental data used with this code are available from Zenodo at https://doi.org/10.5281/zenodo.20088460.
+
 The repo is organized around figure-generation scripts, data analysis helpers, and optics simulation utilities. Most modules are designed to accept precomputed arrays such as `phi_unwrapped` and correlation channel data rather than relying on raw file loaders.
+
+Note: many scripts use relative imports (for example, `from .kimograph import compute_kimograph`), so they should be run as part of the `src` package. From the repository root, use commands such as:
+
+- `python -m src.analysis_kimograph_dynamics`
+- `python -m src.preprocessing_and_angle_extraction`
+
+Alternatively, change into the `src` directory and run module form:
+
+- `cd src`
+- `python -m analysis_kimograph_dynamics`
+
+Avoid executing files directly with `python analysis_kimograph_dynamics.py` because relative imports may fail.
 
 ## Repository Structure
 - `preprocessing_and_angle_extraction.py` - Takes raw polarization APD data and returns `phi_unwrapped`. This is the first step in the pipeline.
@@ -24,15 +46,6 @@ The repo is organized around figure-generation scripts, data analysis helpers, a
 - `analysis_drag_estimation_free_rotation.py` - Drag estimation for freely rotating nanorods (corresponds to Supplementary Figure S7); estimates drag coefficients from Welch PSD fits.
 - `optics_simulation.py` - Optics simulation utilities for back-focal-plane Fresnel polarization response and Fourkas reconstruction error analysis.
 
-## Data structure
-- `data/`
-  - `main_motors/`
-    - `raw/` – raw `.tdms` polarization recordings and companion `_cor.npy` correction files for motor experiments. These files are the starting point for `preprocessing_and_angle_extraction.py`.
-    - `phi_unwrapped/` – extracted unwrapped azimuthal phase traces stored as `.npy`. These are the first processed orientation outputs from Fourkas extraction.
-    - `step_filtered/` – step-detection results stored as `.npz`, containing filtered phase, `time_boundaries`, and `levels` from `step_detection.py`. In these `.npz` files, the step boundary indices are saved under the key `peaks` and the detected level values are saved under the key `m`.
-    - `mapped_to_global_states/` – global state mapping outputs for selected datasets. `map_local_to_global_states.py` identifies KDE global states from `phi_unwrapped` and maps detected step levels to those global angular states.
-  - `free_gold/` – freely rotating gold nanorod datasets used for Supplementary Figure S7. Includes raw `.tdms` files, `_cor.npy` correction files, and selected extracted `.npy` traces.
-  - `fixed_rods/` – stuck-on-surface gold nanorod datasets used for Supplementary Figure S3. Includes raw `.tdms` files and `_cor.npy` correction files.
 
 ## Figure Mapping
 

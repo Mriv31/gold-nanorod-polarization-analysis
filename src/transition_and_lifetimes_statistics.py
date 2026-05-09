@@ -295,6 +295,15 @@ if __name__ == "__main__":
     1. Loading data from previous analysis steps
     2. Computing transition times between global states
     3. Visualizing transition time statistics
+
+    Notes:
+    - `global_states.npy`, `mapped_levels.npy`, and `filtered_boundaries.npy` are produced by
+      `map_local_to_global_states.py`.
+    - `global_states.npy` contains the well-defined global state angles.
+    - `mapped_levels.npy` contains the local step levels mapped to those global states.
+    - `filtered_boundaries.npy` contains the final step boundaries from the step detection pipeline.
+    - This pipeline is valid for the PotAB_Motor1 dataset in the paper only, because the
+      other files do not contain well-defined global states across the full recording.
     """
 
     # File paths (adjust as needed for your data)

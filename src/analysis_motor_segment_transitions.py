@@ -479,9 +479,3 @@ def create_figure5_complete(
         print(f"Error creating Figure 5: {e}")
         return {}
 
-
-create_figure5_complete(
-    "DeltaMotAB_Motor2",
-    "DeltaMotAB_Motor4",
-    "C:\\Users\\rieu\\OneDrive - Nexus365\\PapierRBANMRAC\\Data\\good\\",
-)

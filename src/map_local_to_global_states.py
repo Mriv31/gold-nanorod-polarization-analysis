@@ -7,7 +7,6 @@ The workflow:
 1. Takes unwrapped azimuthal angle data (phi_unwrapped) and step detection results
 2. Identifies global states using kernel density estimation on the full phi distribution
 3. Maps each discrete step from step detection to the closest global state
-4. Handles periodic boundary conditions (2π wrapping) for angular data
 
 Key functions:
     - find_global_states_kde: Identify global states via KDE peak detection
@@ -19,6 +18,7 @@ from sklearn.neighbors import KernelDensity
 from scipy import signal
 
 
+BANDWITH_RADIAN = 0.012  # Bandwidth for KDE in radians
 def find_global_states_kde(
     phi_unwrapped, bandwidth=0.012, prominence_threshold=0.01, min_peak_distance_deg=5
 ):

@@ -165,9 +165,12 @@ def detect_steps_algorithm_core(signal_array, min_step_amplitude=10.0):
 
 
 if __name__ == "__main__":
-    # Example usage from unwrapped angle datas 
-    # First select manually a long dwell from the unwrapped phi signal, then apply the step detection algorithm
-    # Compute the noise standard deviation from the long dwell, then apply the chi2 weighted filter, and finally apply the step detection algorithm
+    # Example usage for raw Zenodo data:
+    # 1. Download the raw dataset from Zenodo and place the files in the local `data/raw/` directory.
+    # 2. Use `preprocessing_and_angle_extraction.py` to open the raw TDMS data and extract `phi_unwrapped`.
+    # 3. Select a long dwell segment from `phi_unwrapped` and compute `noise_std_dev = np.std(long_dwell_segment)`.
+    # 4. Tune `noise_std_dev` using a long dwell until false positives are sufficiently low.
+    # 5. Apply the chi2 weighted filter and then run the step detection algorithm.
     phi_unwrapped = np.load("phi_unwrapped.npy")
     long_dwell_from_phi = np.load("long_dwell_from_phi.npy")
     noise_std_dev = np.std(long_dwell_from_phi)

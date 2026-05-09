@@ -8,6 +8,8 @@ on a hemisphere. The visualization displays:
 - Measured orientation (phi) and polar (theta) angles as point clouds
 - Reference markers and orientation indicators
 
+The TDMS input data used for these visualizations come from the Zenodo repository.
+
 Key components:
     - plot_cylinder: Renders oriented cylinders in 3D space
     - spherical_to_cartesian: Converts spherical to Cartesian coordinates

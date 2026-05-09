@@ -126,9 +126,7 @@ def Fourkas(
     P = c0 - c90 + c45 - c135
 
     sinsqtheta = 4 * A * P / (2 * (ss + cs) * OP * C - 4 * B * P)
-    test = np.sqrt(
-        np.abs(sinsqtheta)
-    )  # raise a warning in case abs is used / it should not
+    test = np.sqrt(sinsqtheta)  
     test = np.where(test > 1, 1, test)
     theta1 = np.arcsin(test)
     return phi, theta1
@@ -177,6 +175,8 @@ def load_tdms_channels(tdms_path, start_index=0, max_samples=250000):
 
 
 if __name__ == "__main__":
+    # Use the raw TDMS data from the Zenodo directory when running this script.
+    # Place the downloaded dataset in `data/raw/` or update the path below to point to Zenodo data.
     tdms_path = Path(__file__).resolve().parent / "data" / "raw" / "PotAB_Motor1.tdms"
     c90, c45, c135, c0 = load_tdms_channels(
         tdms_path, start_index=250000 * 280, max_samples=500000
