@@ -35,8 +35,8 @@ Avoid executing files directly with `python analysis_kimograph_dynamics.py` beca
 - `preprocessing_and_angle_extraction.py` - Takes raw polarization APD data and returns `phi_unwrapped`. This is the first step in the pipeline.
 - `step_detection.py` - Takes `phi_unwrapped` and returns `filtered_phi`, `time_boundaries`, and `levels` from step detection. Most downstream functions build on these outputs.
 - `kimograph.py` - Kimograph computation and plotting utilities.
-- `MSD_and_statistics.py` - Mean squared displacement and related statistical analysis.
-- `ECF.py` - Empirical characteristic function / additional analysis helpers.
+- `msd_and_statistics.py` - Mean squared displacement and related statistical analysis.
+- `empirical_characteristic_function.py` - Empirical characteristic function / additional analysis helpers.
 - `map_local_to_global_states.py` - State mapping to global statistics (used for motor PotAB_Motor1 and Figure 3 only).
 - `transition_and_lifetimes_statistics.py` - Transition-state and lifetime statistics analysis.
 - `visualization_hemispherical_polarimetry.py` - 3D polarimetry visualization module (corresponds to Figure 1); builds publication-quality hemispherical plots of measured orientation (`phi`) and polar (`theta`) angles.
